@@ -2,13 +2,36 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Bluesky friends - gestiona tus contactos.</title>
 </head>
 <body>
     {{ num_posts }} posts
     
     {% for post in posts %}
-        Mostrando el post22 {{ post }}
+    <div style="display: table;clear: both; padding-top: 2px;">
+        <div style="align-content: flex-start;position:relative;display:flex;float: left;">
+            <div style="overflow: hidden; width: 42px; height: 42px; border-radius: 21px; background-color: rgb(17, 24, 34);">
+                <img fetchpriority="auto" src="static/logosaco.jpg" style="object-position: left 50% top 50%; width: 100%; height: 100%; left: 0px; top: 0px; object-fit: cover; transition-duration: 0ms; transition-timing-function: linear;">
+            </div>
+        </div>
+        <div style="align-content: flex-start;position:relative;display:flex;float: left;padding-left: 5px;">
+        <p>{{ post['nick'] }}</p>
+        </div>
+        <div style="align-content: flex-start;position:relative;display:flex;float: left;padding-left: 5px;">
+            <p>{{ post['estado'] }}</p>
+            {% if post['estado'] == "No te sigue" %}                
+                <button style="background-color: rgb(0, 106, 255);flex-direction: row; align-items: center; justify-content: center; padding: 12px 24px; gap: 6px; border-radius: 999px;">
+                    <div dir="auto" class="css-146c3p1" style="font-size: 15px; letter-spacing: 0px; color: rgb(255, 255, 255); text-align: center; line-height: 20px; font-weight: 500; font-family: InterVariable, system-ui, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-variant: no-contextual;">Seguir</div>
+                </button>
+            {% else %}
+                <button style="background-color: rgb(25, 34, 46);flex-direction: row; align-items: center; justify-content: center; padding: 12px 24px; gap: 6px; border-radius: 999px;">
+                    <div dir="auto" class="css-146c3p1" style="font-size: 15px; letter-spacing: 0px; color: rgb(255, 255, 255); text-align: center; line-height: 20px; font-weight: 500; font-family: InterVariable, system-ui, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-variant: no-contextual;">Dejar de seguir</div>
+                </button>
+            {% endif %}
+
+        </div>
+    </div>
     {% endfor %}
 </body>
 </html>

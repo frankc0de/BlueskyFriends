@@ -7,7 +7,15 @@ app = Flask(__name__)
 #def hello_world():
 #    return 'Hello, World!'
 
-posts = ['aaaaa','bbbbb','cccccc']
+
+# seguir tambien
+# seguir
+# sois amigos
+posts = [
+    {'nick':'@frank000.bsky.social','estado':'No te sigue'},
+    {'nick':'@frank000.bsky.social','estado':'Te sigue'},
+    {'nick':'@frank000.bsky.social','estado':'No te sigue'},
+         ]
 
 @app.route("/")
 def index():
