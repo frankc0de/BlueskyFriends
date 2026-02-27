@@ -153,7 +153,7 @@ def user_identity_lookup(usuario):
     return usuario
 
 @app.route('/', methods=['GET', 'POST'])
-def inicio():
+def hello_world():
     app.logger.debug(f'raiz' )
     if request.method == 'POST':
         app.logger.debug(f'post 1' )
