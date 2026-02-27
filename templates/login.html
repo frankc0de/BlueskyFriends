@@ -1,11 +1,130 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Bluesky friends - gestiona tus contactos.</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShareApp - Iniciar sesión BETA</title>
+
+<style>
+:root {
+    --primary: #0A7AFF;
+    --primary-hover: #0066E6;
+    --bg: #F5F8FA;
+    --card-bg: #FFFFFF;
+    --text: #0F1419;
+    --muted: #536471;
+    --border: #E6ECF0;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 380px;
+    padding: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.logo {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 24px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: var(--text);
+}
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 999px;
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+.footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+}
+</style>
 </head>
+
 <body>
-    <h1>Login</h1>
+
+<div class="container">
+    <div class="card">
+        <div class="logo">ShareApp</div>
+        <h2>Iniciar sesión</h2>
+
+        <!-- IMPORTANTE -->
+        <form action="/" method="POST">
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Usuario o correo electrónico" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Contraseña" required>
+            </div>
+
+            <button type="submit">Entrar</button>
+        </form>
+
+        <div class="footer">
+            ¿No tienes cuenta? Regístrate
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

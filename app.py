@@ -31,19 +31,25 @@ def user_identity_lookup(usuario):
 
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
+    app.logger.debug(f'raiz' )
     if request.method == 'POST':
+        app.logger.debug(f'post 1' )
         username = request.form['username'] #request.json.get('username')
         password = request.form['password'] #request.json.get('password')
         app.logger.debug(f'hola con nombre de test {username}' )
 
         return 'eee'
     elif request.method == 'GET':
+        app.logger.debug(f'get principal' )
         token = request.cookies.get("access_token_cookie")
+        app.logger.debug(f'get principal1' )
         if not token:
-            resp = render_template('index.html')
+            app.logger.debug(f'get principal2' )
+            resp = render_template('login.html')
             #unset_jwt_cookies(resp)    
             return resp
         else:
+            app.logger.debug(f'get principal3' )
             resp = redirect('/home')
             return resp
 
@@ -68,7 +74,7 @@ def logout():
 @app.route('/home')
 @jwt_required()
 def home():
-    kk = localStorage.getItem('token')
+    #kk = localStorage.getItem('token')
     return "dentro"
 
 
