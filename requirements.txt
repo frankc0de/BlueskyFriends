@@ -1,3 +1,4 @@
+atproto
 flask
 flask-jwt-extended
 python-dotenv
