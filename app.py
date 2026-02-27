@@ -38,7 +38,15 @@ def hello_world():
         password = request.form['password'] #request.json.get('password')
         app.logger.debug(f'hola con nombre de test {username}' )
 
-        return 'eee'
+        app.logger.debug(f'get principal3' )         
+
+        access_token = create_access_token(identity=username, fresh=True)
+        #refresh_token = create_refresh_token(identity=username)
+        resp = redirect('/home')
+        set_access_cookies(resp, access_token)
+        #set_access_cookies(resp, refresh_token)
+        return resp
+
     elif request.method == 'GET':
         app.logger.debug(f'get principal' )
         token = request.cookies.get("access_token_cookie")
