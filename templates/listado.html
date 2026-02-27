@@ -2,13 +2,143 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Bluesky friends - gestiona tus contactos.</title>
+    <title>Lista de cuentas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .account-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: transform 0.1s ease;
+        }
+
+        .account-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .account-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .account-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .display-name {
+            font-weight: 600;
+            font-size: 15px;
+            color: #111;
+        }
+
+        .handle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .follow-btn {
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .following {
+            background-color: #e6f0ff;
+            color: #1d4ed8;
+        }
+
+        .not-following {
+            background-color: #1d4ed8;
+            color: white;
+        }
+
+        .profile-link {
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Listado de usuarios</h1>
-    <h2>Usuarios que sigues y que te siguen.</h2>
-    <span>si quieres seguir o dejar de seguir pulsa el boton correspondiente.</span>
+
+<div class="container">
+
+    {% for account in accounts %}
+    <div class="account-card">
+
+        <div class="account-info">
+            <img src="{{ account.avatar }}" alt="avatar" class="avatar">
+
+            <div class="account-text">
+                <span class="display-name">{{ account.display_name }}</span>
+                <span class="handle">@{{ account.handle }}</span>
+            </div>
+        </div>
+
+        <div class="actions">
+
+            <!--<form method="POST" action=" url_for('toggle_follow') ">-->
+            <form method="POST" action="/">    
+                <input type="hidden" name="did" value="{{ account.did }}">
+                <button 
+                    type="submit"
+                    class="follow-btn {% if account.following %}following{% else %}not-following{% endif %}">
+                    
+                    {% if account.following %}
+                        Dejar de seguir
+                    {% else %}
+                        Seguir
+                    {% endif %}
+                </button>
+            </form>
+
+            <a href="{{ account.profile_url }}" target="_blank" class="profile-link">
+                🔗
+            </a>
+
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
 
 </body>
 </html>
