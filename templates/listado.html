@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <title>Lista de cuentas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #f5f7fa;
+            background-color: #000000;
             margin: 0;
             padding: 20px;
         }
@@ -62,6 +63,13 @@
             font-size: 14px;
             color: #666;
         }
+        .description {
+            font-size: 14px;
+            color: #666;
+            max-width: 400px;
+            padding-left: 10px;
+            padding-top: 5px;
+        }
 
         .actions {
             display: flex;
@@ -82,11 +90,13 @@
         .following {
             background-color: #e6f0ff;
             color: #1d4ed8;
+            white-space: nowrap;
         }
 
         .not-following {
             background-color: #1d4ed8;
             color: white;
+            white-space: nowrap;
         }
 
         .profile-link {
@@ -104,11 +114,12 @@
     <div class="account-card">
 
         <div class="account-info">
-            <img src="{{ account.avatar }}" alt="avatar" class="avatar">
+            <img src="{{ account.avatar }}" alt="avatar" class="avatar" loading="lazy">
 
             <div class="account-text">
                 <span class="display-name">{{ account.display_name }}</span>
                 <span class="handle">@{{ account.handle }}</span>
+                <span class="description">{{ account.description }}</span>
             </div>
         </div>
 
@@ -122,9 +133,9 @@
                     class="follow-btn {% if account.following %}following{% else %}not-following{% endif %}">
                     
                     {% if account.following %}
-                        Dejar de seguir
+                        Siguiendo
                     {% else %}
-                        Seguir
+                        + Seguir
                     {% endif %}
                 </button>
             </form>
